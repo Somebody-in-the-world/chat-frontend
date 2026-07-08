@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+    --color-text-primary: #141530;
+    --color-bg-primary: #f8f7fc;
+    --color-bg-secondary: #eeecf9;
+    --color-border-primary: #1a1530;
+    --color-btn-primary: #5a4bd1;
+    --color-btn-primary-hovered: #4b3b9e;
+    --color-btn-primary-active: #3b2e80;
+    --color-btn-primary-disabled: #c5bfe8;
+    --color-btn-secondary: #eeecf9;
+    --color-btn-secondary-hovered: #ddd9f2;
+    --color-btn-secondary-active: #cfcaeb;
+    --color-btn-secondary-disabled: #f5f4fb;
+    --color-btn-tertiary: transparent;
+    --color-btn-tertiary-hovered: #eeecf9;
+    --color-btn-tertiary-active: #ddd9f2;
+    --color-btn-tertiary-disabled: transparent;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+@layer base {
+    body {
+        color: var(--color-text-primary);
+        background-color: var(--color-bg-primary);
+        font-family: var(--font-mono);
+    }
+
+    div,
+    form,
+    input,
+    button {
+        border-color: var(--color-border-primary);
+    }
+
+    button {
+        background-color: var(--color-btn-primary);
+        color: white;
+    }
+
+    button:hover {
+        background-color: var(--color-btn-primary-hovered);
+        cursor: pointer;
+    }
+
+    button:active {
+        background-color: var(--color-btn-primary-active);
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background-color: var(--color-btn-primary-disabled);
+        cursor: default;
+    }
+
+    button.secondary-btn {
+        background-color: var(--color-btn-secondary);
+    }
+
+    button:hover.secondary-btn {
+        background-color: var(--color-btn-secondary-hovered);
+    }
+
+    button:active.secondary-btn {
+        background-color: var(--color-btn-secondary-active);
+    }
+
+    button:disabled.secondary-btn {
+        background-color: var(--color-btn-tertiary-disabled);
+    }
+
+    button.tertiary-btn {
+        color: var(--color-text-primary);
+        background-color: var(--color-btn-tertiary);
+    }
+
+    button:hover.tertiary-btn {
+        background-color: var(--color-btn-tertiary-hovered);
+    }
+
+    button:active.tertiary-btn {
+        background-color: var(--color-btn-tertiary-active);
+    }
+
+    button:disabled.tertiary-btn {
+        background-color: var(--color-btn-tertiary-disabled);
+    }
+
+    .dark {
+        --color-text-primary: #c2c1d0;
+        --color-bg-primary: #0e0e18;
+        --color-bg-secondary: #171725;
+        --color-border-primary: #2d2d40;
+        --color-btn-primary: #4a50c9;
+        --color-btn-primary-hovered: #5b61d5;
+        --color-btn-primary-active: #6d72e0;
+        --color-btn-primary-disabled: #282a44;
+        --color-btn-secondary: #1e1e2f;
+        --color-btn-secondary-hovered: #28283d;
+        --color-btn-secondary-active: #32324a;
+        --color-btn-secondary-disabled: #151522;
+        --color-btn-tertiary: transparent;
+        --color-btn-tertiary-hovered: #1e1e2f;
+        --color-btn-tertiary-active: #28283d;
+        --color-btn-tertiary-disabled: transparent;
+    }
+}
