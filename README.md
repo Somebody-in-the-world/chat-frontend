@@ -56,6 +56,8 @@ First, build the code:
 npm run build
 ```
 
+(Note: to change the base path of the built code, set the `BASE_PATH` environmental variable when building)
+
 To preview the built code:
 
 ```bash
