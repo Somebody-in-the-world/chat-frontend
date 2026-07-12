@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { leaveChatroom, listChatrooms, type Chatroom } from "@/chatrooms";
+import { joinChatroom, leaveChatroom, listChatrooms, type Chatroom } from "@/chatrooms";
 import { useFetchUsers } from "@/composables/useFetchUsers";
 import { EventBus } from "@/event-bus";
 import { expect } from "@/result";
 import { computed, onMounted, onUnmounted, ref, type Ref } from "vue";
 import CreateChatroomButton from "./CreateChatroomButton.vue";
 import Seperator from "./SeperatorComponent.vue";
+import { getSocket } from "@/socket.ts";
 
 const chatrooms: Ref<Chatroom[] | null> = ref(null);
 const chatroomCreatedBy = computed(() => chatrooms.value?.map((room) => room.createdBy) ?? []);
@@ -16,13 +17,21 @@ async function refreshChatroomList() {
     chatrooms.value = expect(await listChatrooms());
 }
 
+function joinChatroomHandler() {
+    if (selectedChatroomId.value) {
+        joinChatroom(selectedChatroomId.value);
+    }
+}
+
 onMounted(() => {
     EventBus.on("refreshChatroomList", refreshChatroomList);
+    getSocket().on("connect", joinChatroomHandler);
     refreshChatroomList();
 });
 
 onUnmounted(() => {
     EventBus.off("refreshChatroomList", refreshChatroomList);
+    getSocket().off("connect", joinChatroomHandler);
 });
 
 function selectChatroom(chatroom: Chatroom) {
